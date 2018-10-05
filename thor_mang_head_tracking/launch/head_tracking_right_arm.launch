@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="ns" default="johnny5" />
+  <group ns="$(arg ns)">
+    <node name="thor_mang_head_tracking" pkg="thor_mang_head_tracking" type="head_tracking_node" respawn="true" output="screen">
+      <param name="camera_frame" value="head_cam_link" />
+      <param name="tracked_frame" value="r_wrist_ft_link" />
+    </node>
+  </group>
+</launch>
