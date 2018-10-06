@@ -19,6 +19,8 @@ HeadTrackingNode::HeadTrackingNode(ros::NodeHandle& nh, ros::NodeHandle& pnh)
     return;
   }
 
+  max_vel_ = pnh.param("max_vel", 1.0);
+
   // init trajectory controller
   head_traj_client_.reset(new TrajectoryActionClient("joints/head_traj_controller/follow_joint_trajectory", true));
 
@@ -101,7 +103,7 @@ void HeadTrackingNode::update(const ros::TimerEvent& /*event*/)
 
     trajectory_msgs::JointTrajectoryPoint point;
     point.positions = positions;
-    point.time_from_start = ros::Duration(0.05);
+    point.time_from_start = ros::Duration(sqrt(d_pitch*d_pitch + d_yaw*d_yaw)/max_vel_);
     joint_trajectory.points.push_back(point);
 
     control_msgs::FollowJointTrajectoryGoal trajectory_goal;

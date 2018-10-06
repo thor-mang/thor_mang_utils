@@ -6,6 +6,7 @@
     <node name="thor_mang_head_tracking" pkg="thor_mang_head_tracking" type="head_tracking_node" respawn="true" output="screen">
       <param name="camera_frame" value="head_cam_link" />
       <param name="tracked_frame" value="r_wrist_ft_link" />
+      <param name="max_vel" value="1.5" />
     </node>
   </group>
 </launch>

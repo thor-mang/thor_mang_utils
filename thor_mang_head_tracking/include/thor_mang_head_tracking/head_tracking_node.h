@@ -72,6 +72,8 @@ protected:
   double head_p_;
   double head_y_;
 
+  double max_vel_; // [rad/s]
+
   // subscriber
   ros::Subscriber joint_state_sub_;
 };
